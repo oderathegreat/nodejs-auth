@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {check, validationResult} = require('express-validator');
-const { users } = require("../db")
+const { users } = require("../db");
+const bcrypt = require('bcrypt');
 
 
 
@@ -50,9 +51,17 @@ router.post('/register',
 
     res.send('Sign Up Success').status(200);
 
+    console.log(hashedPassword);
+
 
 
 })
+
+router.get('/all-users', (req, res)=> {
+
+    res.send(users);
+
+});
 
 
 module.exports = router;
