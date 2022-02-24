@@ -38,13 +38,18 @@ router.post('/register',
         })
     }
 
-    else{
-        
-        res.status(200).send('Success');
-    }
-
-
     //Hashing our password
+
+    let hashedPassword = await bcrypt.hash(password, 11);
+
+    // Save the password into the db
+    users.push({
+        email,
+        password: hashedPassword
+    });
+
+    res.send('Sign Up Success').status(200);
+
 
 
 })
